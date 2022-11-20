@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CALCULADORA EXPRESIONES</title>
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="./img/calculator.png" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./public/style.css" />
+
+    <!-- Google Font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- SweetAlert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+
+  <body>
+    <main>
+      <article class="title">
+        CALCULADORA EXPRESIONES ARTIM&Eacute;TICAS
+      </article>
+
+      <form action="#" id="formEvaluateExpresion">
+        <article class="formField">
+          <label
+            >EXPRESI&Oacute;N: <input type="text" id="expresionInput" />
+          </label>
+        </article>
+        <article class="formButton">
+          <input type="button" id="calculateExpresion" value="CALCULAR" />
+        </article>
+      </form>
+
+      <section id="result" class="result"></section>
+    </main>
+
+    <!-- Scripts Javascript -->
+    <script type="module" src="./public/main.js"></script>
+  </body>
+</html>

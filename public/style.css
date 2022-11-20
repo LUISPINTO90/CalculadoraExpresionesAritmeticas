@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+p {
+  font-size: 22px;
+  line-height: 1.5rem;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  background-color: #fdfdfc;
+  font-family: "Montserrat", sans-serif;
+  color: #242c35;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.247);
+}
+
+section {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(10, 10, 10, 0.233);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #b5b5b6;
+  width: 100%;
+}
+
+input:focus {
+  outline: none !important;
+  border: 1px solid #dfe1e4;
+  box-shadow: 0 0 10px #929394;
+}
+
+input[type="text"] {
+  margin-top: 1rem;
+}
+
+input[type="button"] {
+  font-family: "Montserrat", sans-serif;
+  background-color: #242c35;
+  color: #fff;
+  max-width: 15rem;
+  min-width: 10rem;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: #242c35;
+  margin-bottom: 3rem;
+}
+.title.sub {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.formField {
+  padding: 0.5rem;
+}
+
+.formButton {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.result {
+  margin-top: 6rem;
+}
+
+.swal2-styled.swal2-confirm.swalBtnColor {
+  color: #030205;
+  background-color: #ccc;
+  font-family: "Montserrat", sans-serif;
+}
