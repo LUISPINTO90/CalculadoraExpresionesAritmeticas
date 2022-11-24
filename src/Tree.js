@@ -2,26 +2,22 @@ import Node from "./Node.js";
 
 export default class Tree {
   constructor(expression) {
+    this.expression = expression;
     this.root = null;
     this.head = null;
     this.tail = null;
-
-    this.expression = expression;
-
     this.preOrderArray = [];
     this.postOrderArray = [];
   }
 
-  // Split the expression into an array
-  splitExpression() {
+  expressionToTree() {
     let expressionArray = this.expression.split("");
-
     for (let i = 0; i < expressionArray.length; i++) {
       let node = new Node(expressionArray[i]);
       this.add(node);
     }
 
-    this.createTree();
+    return this.generateTree();
   }
 
   add(node) {
@@ -38,7 +34,6 @@ export default class Tree {
   delete(node) {
     if (node != this.head) {
       node.previous.next = node.next;
-
       if (node.next != null) {
         node.next.previous = node.previous;
       } else {
@@ -55,9 +50,8 @@ export default class Tree {
     }
   }
 
-  createTree() {
+  generateTree() {
     let aux = this.head;
-
     while (aux != null) {
       if (aux.value == "*" || aux.value == "/") {
         aux.left = aux.previous;
@@ -67,9 +61,7 @@ export default class Tree {
       }
       aux = aux.next;
     }
-
     aux = this.head;
-
     while (aux != null) {
       if (aux.value == "+" || aux.value == "-") {
         aux.left = aux.previous;
@@ -79,7 +71,6 @@ export default class Tree {
       }
       aux = aux.next;
     }
-
     this.root = this.head;
 
     return this.root;
@@ -91,7 +82,6 @@ export default class Tree {
       this.preOrder(node.left);
       this.preOrder(node.right);
     }
-
     if (this.preOrderArray[this.preOrderArray.length - 1] == undefined) {
       this.preOrderArray.pop();
     }
@@ -105,7 +95,6 @@ export default class Tree {
       this.postOrder(node.right);
       this.postOrderArray.push(node.value);
     }
-
     if (this.postOrderArray[this.postOrderArray.length - 1] == undefined) {
       this.postOrderArray.pop();
     }
@@ -113,10 +102,73 @@ export default class Tree {
     return this.postOrderArray;
   }
 
+  calculatePreOrder() {
+    let stack = [];
+    let result = 0;
+
+    for (let i = this.preOrderArray.length - 1; i >= 0; i--) {
+      if (isNaN(this.preOrderArray[i])) {
+        let a = stack.pop();
+        let b = stack.pop();
+
+        switch (this.preOrderArray[i]) {
+          case "+":
+            result = a + b;
+            break;
+          case "-":
+            result = a - b;
+            break;
+          case "*":
+            result = a * b;
+            break;
+          case "/":
+            result = a / b;
+            break;
+        }
+        stack.push(result);
+      } else {
+        stack.push(Number(this.preOrderArray[i]));
+      }
+    }
+
+    return stack;
+  }
+
+  calculatePostOrder() {
+    let queue = [];
+    let result = 0;
+
+    for (let i = 0; i < this.postOrderArray.length; i++) {
+      if (isNaN(this.postOrderArray[i])) {
+        let a = queue.pop();
+        let b = queue.pop();
+
+        switch (this.postOrderArray[i]) {
+          case "+":
+            result = b + a;
+            break;
+          case "-":
+            result = b - a;
+            break;
+          case "*":
+            result = b * a;
+            break;
+          case "/":
+            result = b / a;
+            break;
+        }
+        queue.push(result);
+      } else {
+        queue.push(Number(this.postOrderArray[i]));
+      }
+    }
+
+    return queue;
+  }
+
   result() {
     let preOrder = this.preOrder(this.root);
     let postOrder = this.postOrder(this.root);
-
     let preOrderString = "";
     let postOrderString = "";
 
@@ -129,8 +181,13 @@ export default class Tree {
 
     return `
     <article class="title sub">RESULTADO</article>
-    <p>Recorrido en PreOrder: <b>${preOrderString}</b></p><br>
-    <p>Recorrido en PostOrder: <b>${postOrderString}</b></p>
+      <p>PreOrder: <b class="code">${preOrderString}</b></p>
+      <br />
+      <p>PostOrder: <b class="code">${postOrderString}</b></p>
+      <br />
+      <p>Resultado PreOrder: <b class="code">${this.calculatePreOrder()}</b></p>
+      <br />
+      <p>Resultado PostOrder: <b class="code">${this.calculatePostOrder()}</b></p>
     `;
   }
 }

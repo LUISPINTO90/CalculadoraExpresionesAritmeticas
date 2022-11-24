@@ -7,33 +7,18 @@ document.getElementById("calculateExpresion").addEventListener("click", () => {
 
   if (expresion == "") {
     Swal.fire({
+      buttonsStyling: false,
       customClass: {
         confirmButton: "swalBtnColor",
       },
       icon: "error",
-      title: "Error",
-      text: "No se ha ingresado ninguna expresión",
+      title: "ERROR",
+      text: "NO SE HA INGRESADO NINGUNA EXPRESIÓN.",
     });
   } else {
-    if (expresion.length < 3) {
-      Swal.fire({
-        customClass: {
-          confirmButton: "swalBtnColor",
-        },
-        icon: "error",
-        title: "Error",
-        text: "Ingresa una expresión válida",
-      });
-    } else {
-      let tree = new Tree(expresion);
-      tree.splitExpression();
-      console.log(tree);
-
-      let result = document.getElementById("result");
-      result.innerHTML = tree.result();
-
-      console.log("Recorrido en PreOrder: " + tree.preOrder(tree));
-      console.log("Recorrido en PostOrder: " + tree.postOrder(tree));
-    }
+    let tree = new Tree(expresion);
+    tree.expressionToTree();
+    console.log(tree);
+    document.getElementById("result").innerHTML = tree.result();
   }
 });
